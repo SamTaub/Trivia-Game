@@ -8,7 +8,7 @@ var triviaQuestions = [
       "Steel Curtain",
       "Fearsome Four"
     ],
-    questionAnswer: 2
+    questionAnswer: "2"
   },
   {
     question:
@@ -19,7 +19,7 @@ var triviaQuestions = [
       "John & Trey Madden",
       "John & Chuck Pagano"
     ],
-    questionAnswer: 0
+    questionAnswer: "0"
   },
   {
     question:
@@ -30,7 +30,7 @@ var triviaQuestions = [
       "Arizona Cardinals",
       "San Francisco 49ers"
     ],
-    questionAnswer: 1
+    questionAnswer: "1"
   },
   {
     question:
@@ -41,7 +41,7 @@ var triviaQuestions = [
       "Cincinnati Bengals",
       "Buffalo Bills"
     ],
-    questionAnswer: 3
+    questionAnswer: "3"
   },
   {
     question:
@@ -52,13 +52,13 @@ var triviaQuestions = [
       "Dallas Cowboys",
       "St. Louis Rams"
     ],
-    questionAnswer: 3
+    questionAnswer: "3"
   },
   {
     question:
       "After the 1983 Season, the Colts moved to Indianapolis from which city?",
     questionOptions: ["Baltimore", "Phoenix", "Los Angeles", "Houston"],
-    questionAnswer: 0
+    questionAnswer: "0"
   },
   {
     question: "In 2002, the NFL added what team as it's 32nd team?",
@@ -68,7 +68,7 @@ var triviaQuestions = [
       "Houston Texans",
       "Jacksonville Jaguars"
     ],
-    questionAnswer: 2
+    questionAnswer: "2"
   },
   {
     question:
@@ -79,7 +79,7 @@ var triviaQuestions = [
       "New York Giants",
       "Chicago Bears"
     ],
-    questionAnswer: 1
+    questionAnswer: "1"
   }
 ];
 
@@ -87,13 +87,12 @@ var triviaQuestions = [
 let correctCounter = 0;
 let incorrectCounter = 0;
 let unansweredCounter = 0;
-let gameTimer = 5;
+let gameTimer = 8;
 let intervalId;
-let gameTimerRunning;
 
-if (gameTimer >= 1){
-  gameTimerRunning = true;
-};
+
+let questionCount = 0;
+
 
 //Game Interval functions
 
@@ -109,6 +108,11 @@ function decrement() {
     stop();
     unansweredCounter++;
     updateUnansweredCounter();
+    questionCount++;
+    changeQuestion();
+    gameTimer = 8;
+    run();
+    decrement();
   }
 };
 
@@ -121,14 +125,20 @@ function startNewGame (){
     correctCounter = 0;
     incorrectCounter = 0;
     unansweredCounter = 0;
-    gameTimer = 5;
+    gameTimer = 8;
     intervalId;
     updateCorrectCounter();
     updateIncorrectCounter();
     updateUnansweredCounter();
     run();
     decrement();
+    $("#start-game-button").hide();
+    $(".btn-answer").show();
+    $("#trivia-question").show();
+    changeQuestion();
 };
+
+
 
 //Update Game Functions
 function updateUnansweredCounter(){
@@ -146,16 +156,51 @@ function updateIncorrectCounter(){
 //function to hide elements
 function hideContent(){
   $(".btn-answer").hide();
+  $("#trivia-question").hide();
 };
-
 
 window.onload = hideContent();
 
 
-
 $("#start-game-button").click(function(){
-  $("#start-game-button").hide();
-  $(".btn-answer").show();
   startNewGame();
 });
 
+$(".btn-answer").click(function(){
+  var guessValue =  $(this).attr("value");
+  console.log(triviaQuestions[questionCount].questionAnswer);
+  if (guessValue === triviaQuestions[questionCount].questionAnswer){
+    console.log("hello");
+    correctCounter++;
+    updateCorrectCounter();
+  } else {
+    console.log("else");
+    incorrectCounter++;
+    updateIncorrectCounter();
+  };
+  stop();
+  questionCount++;
+  changeQuestion();
+  gameTimer = 8;
+  run();
+  decrement();
+});
+
+
+
+// for(let i = 0; i<triviaQuestions.length; i++){
+//   $("#trivia-question").text(triviaQuestions[i].question);
+//   $("#a-game-button").text(triviaQuestions[i].questionOptions[0]);
+//   $("#b-game-button").text(triviaQuestions[i].questionOptions[1]);
+//   $("#c-game-button").text(triviaQuestions[i].questionOptions[2]);
+//   $("#d-game-button").text(triviaQuestions[i].questionOptions[3]);
+// };
+
+
+function changeQuestion () {
+  $("#trivia-question").text(triviaQuestions[questionCount].question);
+  $("#a-game-button").text(triviaQuestions[questionCount].questionOptions[0]);
+  $("#b-game-button").text(triviaQuestions[questionCount].questionOptions[1]);
+  $("#c-game-button").text(triviaQuestions[questionCount].questionOptions[2]);
+  $("#d-game-button").text(triviaQuestions[questionCount].questionOptions[3]);
+};
