@@ -87,8 +87,13 @@ var triviaQuestions = [
 let correctCounter = 0;
 let incorrectCounter = 0;
 let unansweredCounter = 0;
-let gameTimer = 30;
+let gameTimer = 5;
 let intervalId;
+let gameTimerRunning;
+
+if (gameTimer >= 1){
+  gameTimerRunning = true;
+};
 
 //Game Interval functions
 
@@ -103,6 +108,7 @@ function decrement() {
   if (gameTimer === 0){
     stop();
     unansweredCounter++;
+    updateUnansweredCounter();
   }
 };
 
@@ -111,12 +117,30 @@ function stop() {
 };
 
 //Function to clear variables when game restarts
-function restartGame (){
+function startNewGame (){
     correctCounter = 0;
     incorrectCounter = 0;
     unansweredCounter = 0;
-    gameTimer = 30;
+    gameTimer = 5;
     intervalId;
+    updateCorrectCounter();
+    updateIncorrectCounter();
+    updateUnansweredCounter();
+    run();
+    decrement();
+};
+
+//Update Game Functions
+function updateUnansweredCounter(){
+  $("#trivia-score-unanswered").text("Unanswered Questions: " + unansweredCounter);
+};
+
+function updateCorrectCounter(){
+  $("#trivia-score-correct").text("Correct Questions: " + correctCounter);
+};
+
+function updateIncorrectCounter(){
+  $("#trivia-score-incorrect").text("Incorrect Questions: " + incorrectCounter);
 };
 
 //function to hide elements
@@ -124,12 +148,14 @@ function hideContent(){
   $(".btn-answer").hide();
 };
 
+
 window.onload = hideContent();
+
+
 
 $("#start-game-button").click(function(){
   $("#start-game-button").hide();
   $(".btn-answer").show();
-  run();
-  decrement();
+  startNewGame();
 });
 
