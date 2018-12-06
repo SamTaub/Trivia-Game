@@ -95,13 +95,41 @@ let intervalId;
 function run() {
   clearInterval(intervalId);
   intervalId = setInterval(decrement, 1000);
-}
+};
 
 function decrement() {
   gameTimer--;
-  $("#trivia-timer").html("<h2>" + gameTimer + "</h2>");
-}
+  $("#trivia-timer").html("<h2> Time Remaining: " + gameTimer + "s </h2>");
+  if (gameTimer === 0){
+    stop();
+    unansweredCounter++;
+  }
+};
 
 function stop() {
   clearInterval(intervalId);
-}
+};
+
+//Function to clear variables when game restarts
+function restartGame (){
+    correctCounter = 0;
+    incorrectCounter = 0;
+    unansweredCounter = 0;
+    gameTimer = 30;
+    intervalId;
+};
+
+//function to hide elements
+function hideContent(){
+  $(".btn-answer").hide();
+};
+
+window.onload = hideContent();
+
+$("#start-game-button").click(function(){
+  $("#start-game-button").hide();
+  $(".btn-answer").show();
+  run();
+  decrement();
+});
+
