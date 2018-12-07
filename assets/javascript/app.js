@@ -158,15 +158,16 @@ function updateIncorrectCounter() {
 function hideContent() {
   $(".btn-answer").hide();
   $("#trivia-question").hide();
+  $(".trivia-image").hide();
 }
 
 window.onload = hideContent();
 
-$("#start-game-button").click(function() {
+$("#start-game-button").click(function () {
   startNewGame();
 });
 
-$(".btn-answer").click(function() {
+$(".btn-answer").click(function () {
   var guessValue = $(this).attr("value");
   if (guessValue === triviaQuestions[questionCount].questionAnswer) {
     correctCounter++;

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <title>NFL History Trivia Game</title>
 
     <!--Link to Bootstrap CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <!--Link to Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -17,51 +19,69 @@
 
 <body>
 
-    <div class = "container">
+    <div class="container">
 
-        <div class = "row">
-            <div class = "col-md-12 text-center bg-dark text-white mt-3 p-3">
+        <div class="row">
+            <div class="col-md-12 text-center bg-dark text-white mt-3 p-3">
                 <h1>
                     NFL History Trivia Game
                 </h1>
             </div>
         </div>
 
-        <div class = "row">
-            <div class = "col-md-12 text-center bg-dark text-white p-3" id = "trivia-timer">
+        <div class="row">
+            <div class="col-md-12 text-center bg-dark text-white p-3" id="trivia-timer">
             </div>
         </div>
 
 
-        <div class = "row">
-            <div class ="col-md-4 text-center bg-dark text-white p-3" id = "trivia-score-correct" >   
+        <div class="row">
+            <div class="col-md-4 text-center bg-dark text-white p-3" id="trivia-score-correct">
             </div>
 
-            <div class ="col-md-4 text-center bg-dark text-white p-3" id = "trivia-score-incorrect">
+            <div class="col-md-4 text-center bg-dark text-white p-3" id="trivia-score-incorrect">
             </div>
 
-            <div class = "col-md-4 text-center bg-dark text-white p-3" id = "trivia-score-unanswered">
-            </div>
-        </div>
-
-
-        <div class = "row">
-            <div class = "col-md-12 text-center bg-dark text-white p-3" id = "trivia-question">
+            <div class="col-md-4 text-center bg-dark text-white p-3" id="trivia-score-unanswered">
             </div>
         </div>
 
-        <div class = "row">
-            <div class = "col-md-12 text-center bg-dark text-white p-3" id = "trivia-answer">
-                    <button type="button" class="btn btn-primary btn-answer" id = "a-game-button" value ="0"></button>
-                    <button type="button" class="btn btn-primary btn-answer" id = "b-game-button" value ="1"></button>
-                    <button type="button" class="btn btn-primary btn-answer" id = "c-game-button" value ="2"></button>
-                    <button type="button" class="btn btn-primary btn-answer" id = "d-game-button" value ="3"></button>
+
+        <div class="row">
+            <div class="col-md-12 text-center bg-dark text-white p-3" id="trivia-question">
             </div>
         </div>
 
-        <div class = "row">
-            <div class = "col-md-12 text-center bg-dark text-white p-3" id = "trivia-game-start-button">
-                    <button type="button" class="btn btn-success" id = "start-game-button">Start New Game</button>
+        <div class="row">
+            <div class="col-md-12 text-center bg-dark text-white p-3" id="trivia-answer">
+                <button type="button" class="btn btn-primary btn-answer" id="a-game-button" value="0"></button>
+                <button type="button" class="btn btn-primary btn-answer" id="b-game-button" value="1"></button>
+                <button type="button" class="btn btn-primary btn-answer" id="c-game-button" value="2"></button>
+                <button type="button" class="btn btn-primary btn-answer" id="d-game-button" value="3"></button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center bg-dark text-white p-3" id="trivia-game-start-button">
+                <button type="button" class="btn btn-success" id="start-game-button">Start New Game</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center bg-dark text-white p-3" id="trivia-game-answer-text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center bg-dark text-white p-3 d-flex justify-content-center" id="trivia-game-answer-image">
+                <img src = "assets/images/q1_steelcurtain.jpg" class = "trivia-image" id = "q1-image" alt = "1970's Steelers Defensive Line">
+                <img src = "assets/images/q2_harbaughbrothers.jpg" class = "trivia-image" id = "q2-image" alt = "Harbaugh Brothers">
+                <img src = "assets/images/q3_seahawks.jpg" class = "trivia-image" id = "q3-image" alt = "Shaun Alexander of the Seahawks">
+                <img src = "assets/images/q4_buffalobills.jpg" class = "trivia-image" id = "q4-image" alt = "Scott Norwood attempts game winning kick in Super Bowl XXV">
+                <img src = "assets/images/q5_rams.jpg" class = "trivia-image" id = "q5-image" alt = "Kurt Warner of the St. Louis Rams">
+                <img src = "assets/images/q6_baltimorecolts.jpg" class = "trivia-image" id = "q6-image" alt = "Baltimore Colts Super Bowl Ring">
+                <img src = "assets/images/q7_texans.jpg" class = "trivia-image" id = "q7-image" id = "David Carr of the Houston Texans">
+                <img src = "assets/images/q8_lions.jpg" class = "trivia-image" id = "q8-image" id = "Lions players enjoy a Thanksgiving Turkey">
             </div>
         </div>
 
@@ -72,10 +92,11 @@
 
 
     <!--Link to JQuery Library-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <!--Link to Custom Javascript-->
-    <script src = "assets/javascript/app.js"></script>
-    
+    <script src="assets/javascript/app.js"></script>
+
 </body>
 
 </html>

@@ -10,5 +10,7 @@ body{
     background-size: cover;
 }
 
-.btn-answer{
+.trivia-image{
+    height: 225px;
+    width: 225px;
 }
