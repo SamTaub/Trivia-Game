@@ -87,120 +87,108 @@ var triviaQuestions = [
 let correctCounter = 0;
 let incorrectCounter = 0;
 let unansweredCounter = 0;
-let gameTimer = 8;
+let totalAnswerCounter = 0;
+let gameTimer = 30;
 let intervalId;
 
-
 let questionCount = 0;
-
 
 //Game Interval functions
 
 function run() {
   clearInterval(intervalId);
   intervalId = setInterval(decrement, 1000);
-};
+}
 
 function decrement() {
   gameTimer--;
   $("#trivia-timer").html("<h2> Time Remaining: " + gameTimer + "s </h2>");
-  if (gameTimer === 0){
+  if (gameTimer === 0) {
     stop();
     unansweredCounter++;
+    totalAnswerCounter++;
     updateUnansweredCounter();
     questionCount++;
     changeQuestion();
-    gameTimer = 8;
+    gameTimer = 30;
     run();
     decrement();
   }
-};
+}
 
 function stop() {
   clearInterval(intervalId);
-};
+}
 
 //Function to clear variables when game restarts
-function startNewGame (){
-    correctCounter = 0;
-    incorrectCounter = 0;
-    unansweredCounter = 0;
-    gameTimer = 8;
-    intervalId;
-    updateCorrectCounter();
-    updateIncorrectCounter();
-    updateUnansweredCounter();
-    run();
-    decrement();
-    $("#start-game-button").hide();
-    $(".btn-answer").show();
-    $("#trivia-question").show();
-    changeQuestion();
-};
-
-
+function startNewGame() {
+  correctCounter = 0;
+  incorrectCounter = 0;
+  unansweredCounter = 0;
+  gameTimer = 30;
+  intervalId;
+  totalAnswerCounter;
+  updateCorrectCounter();
+  updateIncorrectCounter();
+  updateUnansweredCounter();
+  run();
+  decrement();
+  $("#start-game-button").hide();
+  $(".btn-answer").show();
+  $("#trivia-question").show();
+  changeQuestion();
+}
 
 //Update Game Functions
-function updateUnansweredCounter(){
-  $("#trivia-score-unanswered").text("Unanswered Questions: " + unansweredCounter);
-};
+function updateUnansweredCounter() {
+  $("#trivia-score-unanswered").text(
+    "Unanswered Questions: " + unansweredCounter
+  );
+}
 
-function updateCorrectCounter(){
+function updateCorrectCounter() {
   $("#trivia-score-correct").text("Correct Questions: " + correctCounter);
-};
+}
 
-function updateIncorrectCounter(){
+function updateIncorrectCounter() {
   $("#trivia-score-incorrect").text("Incorrect Questions: " + incorrectCounter);
-};
+}
 
 //function to hide elements
-function hideContent(){
+function hideContent() {
   $(".btn-answer").hide();
   $("#trivia-question").hide();
-};
+}
 
 window.onload = hideContent();
 
-
-$("#start-game-button").click(function(){
+$("#start-game-button").click(function() {
   startNewGame();
 });
 
-$(".btn-answer").click(function(){
-  var guessValue =  $(this).attr("value");
-  console.log(triviaQuestions[questionCount].questionAnswer);
-  if (guessValue === triviaQuestions[questionCount].questionAnswer){
-    console.log("hello");
+$(".btn-answer").click(function() {
+  var guessValue = $(this).attr("value");
+  if (guessValue === triviaQuestions[questionCount].questionAnswer) {
     correctCounter++;
+    totalAnswerCounter++;
     updateCorrectCounter();
   } else {
-    console.log("else");
     incorrectCounter++;
+    totalAnswerCounter++;
     updateIncorrectCounter();
-  };
+  }
   stop();
   questionCount++;
   changeQuestion();
-  gameTimer = 8;
+  gameTimer = 30;
   run();
   decrement();
 });
 
-
-
-// for(let i = 0; i<triviaQuestions.length; i++){
-//   $("#trivia-question").text(triviaQuestions[i].question);
-//   $("#a-game-button").text(triviaQuestions[i].questionOptions[0]);
-//   $("#b-game-button").text(triviaQuestions[i].questionOptions[1]);
-//   $("#c-game-button").text(triviaQuestions[i].questionOptions[2]);
-//   $("#d-game-button").text(triviaQuestions[i].questionOptions[3]);
-// };
-
-
-function changeQuestion () {
+function changeQuestion() {
   $("#trivia-question").text(triviaQuestions[questionCount].question);
   $("#a-game-button").text(triviaQuestions[questionCount].questionOptions[0]);
   $("#b-game-button").text(triviaQuestions[questionCount].questionOptions[1]);
   $("#c-game-button").text(triviaQuestions[questionCount].questionOptions[2]);
   $("#d-game-button").text(triviaQuestions[questionCount].questionOptions[3]);
-};
+}
