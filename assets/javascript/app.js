@@ -15,7 +15,7 @@ var triviaQuestions = [
       "In 2012, which two brothers coached against eachother in Super Bowl XLVII (47)?",
     questionOptions: [
       "John & Jim Harbaugh",
-      "John & Trey Gruden",
+      "John & Jay Gruden",
       "John & Trey Madden",
       "John & Chuck Pagano"
     ],
@@ -109,16 +109,16 @@ function decrement() {
     totalAnswerCounter++;
     updateUnansweredCounter();
     questionCount++;
-    changeQuestion();
-    gameTimer = 30;
-    run();
-    decrement();
+    $("#trivia-game-answer-text").text("Incorrect!  You didn't even guess!");
+    setTimeout(changeQuestion, 5000);
   }
 }
 
 function stop() {
   clearInterval(intervalId);
 }
+
+
 
 //Function to clear variables when game restarts
 function startNewGame() {
@@ -174,22 +174,29 @@ $(".btn-answer").click(function () {
     correctCounter++;
     totalAnswerCounter++;
     updateCorrectCounter();
+    stop();
+    $("#trivia-game-answer-text").text("Correct!");
+    setTimeout(changeQuestion, 5000);
   } else {
     incorrectCounter++;
     totalAnswerCounter++;
     updateIncorrectCounter();
+    stop();
+    $("#trivia-game-answer-text").text("Incorrect!");
+    setTimeout(changeQuestion, 5000);
   }
-  stop();
   questionCount++;
-  changeQuestion();
-  gameTimer = 30;
-  run();
-  decrement();
 });
 
 function changeQuestion() {
   if (totalAnswerCounter == 8){
     $("#start-game-button").show();
+  };
+  if (totalAnswerCounter <= 7){
+  $("#trivia-game-answer-text").text(" ");
+  gameTimer = 30;
+  run();
+  decrement();
   };
   $("#trivia-question").text(triviaQuestions[questionCount].question);
   $("#a-game-button").text(triviaQuestions[questionCount].questionOptions[0]);
@@ -197,3 +204,5 @@ function changeQuestion() {
   $("#c-game-button").text(triviaQuestions[questionCount].questionOptions[2]);
   $("#d-game-button").text(triviaQuestions[questionCount].questionOptions[3]);
 };
+
+
