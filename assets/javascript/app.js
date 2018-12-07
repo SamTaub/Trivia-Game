@@ -8,7 +8,7 @@ var triviaQuestions = [
       "Steel Curtain",
       "Fearsome Four"
     ],
-    questionAnswer: "2"
+    questionAnswer: "2",
   },
   {
     question:
@@ -125,18 +125,19 @@ function startNewGame() {
   correctCounter = 0;
   incorrectCounter = 0;
   unansweredCounter = 0;
+  totalAnswerCounter = 0;
+  questionCount = 0;
   gameTimer = 30;
   intervalId;
-  totalAnswerCounter;
   updateCorrectCounter();
   updateIncorrectCounter();
   updateUnansweredCounter();
+  changeQuestion();
   run();
   decrement();
   $("#start-game-button").hide();
   $(".btn-answer").show();
   $("#trivia-question").show();
-  changeQuestion();
 }
 
 //Update Game Functions
@@ -187,9 +188,12 @@ $(".btn-answer").click(function () {
 });
 
 function changeQuestion() {
+  if (totalAnswerCounter == 8){
+    $("#start-game-button").show();
+  };
   $("#trivia-question").text(triviaQuestions[questionCount].question);
   $("#a-game-button").text(triviaQuestions[questionCount].questionOptions[0]);
   $("#b-game-button").text(triviaQuestions[questionCount].questionOptions[1]);
   $("#c-game-button").text(triviaQuestions[questionCount].questionOptions[2]);
   $("#d-game-button").text(triviaQuestions[questionCount].questionOptions[3]);
-}
+};
