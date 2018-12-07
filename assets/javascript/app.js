@@ -8,7 +8,7 @@ var triviaQuestions = [
       "Steel Curtain",
       "Fearsome Four"
     ],
-    questionAnswer: "2",
+    questionAnswer: "2"
   },
   {
     question:
@@ -110,7 +110,7 @@ function decrement() {
     updateUnansweredCounter();
     questionCount++;
     $("#trivia-game-answer-text").text("Incorrect!  You didn't even guess!");
-    setTimeout(changeQuestion, 5000);
+    setTimeout(changeQuestion, 3000);
   }
 }
 
@@ -176,14 +176,14 @@ $(".btn-answer").click(function () {
     updateCorrectCounter();
     stop();
     $("#trivia-game-answer-text").text("Correct!");
-    setTimeout(changeQuestion, 5000);
+    setTimeout(changeQuestion, 3000);
   } else {
     incorrectCounter++;
     totalAnswerCounter++;
     updateIncorrectCounter();
     stop();
     $("#trivia-game-answer-text").text("Incorrect!");
-    setTimeout(changeQuestion, 5000);
+    setTimeout(changeQuestion, 3000);
   }
   questionCount++;
 });
