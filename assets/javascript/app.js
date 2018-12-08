@@ -8,7 +8,7 @@ var triviaQuestions = [
       "Steel Curtain",
       "Fearsome Four"
     ],
-    questionAnswer: "2"
+    questionAnswer: "2",
   },
   {
     question:
@@ -108,6 +108,7 @@ function decrement() {
     unansweredCounter++;
     totalAnswerCounter++;
     updateUnansweredCounter();
+    disableAnswerButton();
     questionCount++;
     $("#trivia-game-answer-text").text("Incorrect!  You didn't even guess!");
     setTimeout(changeQuestion, 3000);
@@ -175,6 +176,7 @@ $(".btn-answer").click(function () {
     totalAnswerCounter++;
     updateCorrectCounter();
     stop();
+    disableAnswerButton();
     $("#trivia-game-answer-text").text("Correct!");
     setTimeout(changeQuestion, 3000);
   } else {
@@ -182,6 +184,7 @@ $(".btn-answer").click(function () {
     totalAnswerCounter++;
     updateIncorrectCounter();
     stop();
+    disableAnswerButton();
     $("#trivia-game-answer-text").text("Incorrect!");
     setTimeout(changeQuestion, 3000);
   }
@@ -197,6 +200,7 @@ function changeQuestion() {
   gameTimer = 30;
   run();
   decrement();
+  enableAnswerButton();
   };
   $("#trivia-question").text(triviaQuestions[questionCount].question);
   $("#a-game-button").text(triviaQuestions[questionCount].questionOptions[0]);
@@ -206,3 +210,16 @@ function changeQuestion() {
 };
 
 
+function disableAnswerButton(){
+  document.getElementById("a-game-button").disabled = true;
+  document.getElementById("b-game-button").disabled = true;
+  document.getElementById("c-game-button").disabled = true;
+  document.getElementById("d-game-button").disabled = true;
+};
+
+function enableAnswerButton(){
+  document.getElementById("a-game-button").disabled = false;
+  document.getElementById("b-game-button").disabled = false;
+  document.getElementById("c-game-button").disabled = false;
+  document.getElementById("d-game-button").disabled = false;
+};
